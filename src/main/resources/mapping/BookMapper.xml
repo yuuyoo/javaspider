@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djl.spider.dao.BookDao">
+
+    <!-- 动态批量插入数据 -->
+    <insert id="addBooks">
+        insert into  tb_book(detailUrl, img, bookname, point, commentCount, author, publisher, price, summary)
+        values
+        <foreach collection="books" item="book" separator=",">
+            (#{book.detailUrl}, #{book.img}, #{book.bookName}, #{book.point}, #{book.commentCount}, #{book.author},
+            #{book.publisher}, #{book.price}, #{book.summary})
+        </foreach>
+    </insert>
+</mapper>
